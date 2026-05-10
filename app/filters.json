@@ -1,0 +1,55 @@
+{
+  "filters": [
+    {
+      "id": "Era",
+      "options": [
+        "Prehistoric",
+        "Medieval",
+        "Renaissance",
+        "Baroque",
+        "19th Century",
+        "Modern",
+        "Contemporary"
+      ]
+    },
+    {
+      "id": "Medium",
+      "options": [
+        "Oil on canvas",
+        "Oil on panel",
+        "Watercolor",
+        "Marble",
+        "Fresco",
+        "Photo"
+      ]
+    },
+    {
+      "id": "Museum",
+      "options": [
+        "Museo Nacional Thyssen-Bornemisza",
+        "Museo Nacional del Prado",
+        "Museo Reina Sofía"
+      ]
+    },
+    {
+      "id": "Status",
+      "options": [
+        "On display",
+        "Storage",
+        "On Loan"
+      ]
+    },
+    {
+      "id": "Country of Origin",
+      "options": [
+        "Spain",
+        "France",
+        "Italy",
+        "China",
+        "Japan",
+        "USA",
+        "Netherlands"
+      ]
+    }
+  ]
+}
