@@ -3,7 +3,7 @@
 import { Box, Flex, Text, Icon } from "@chakra-ui/react";
 import { MdOutlineMuseum } from "react-icons/md";
 import { LuCalendar } from "react-icons/lu";
-import { IoCheckmarkCircle, IoEllipseOutline } from "react-icons/io5";
+import { IoCheckmarkCircle, IoEllipseOutline, IoTrashOutline } from "react-icons/io5";
 import { Route, useRoutes } from "../context/RoutesContext";
 
 interface RouteCardProps extends Route {
@@ -13,7 +13,7 @@ interface RouteCardProps extends Route {
 
 export default function RouteCard(props: RouteCardProps) {
   const { id, name, museums, date, stopsCount, isCompleted, onClick, isSelected } = props;
-  const { toggleRouteCompletion } = useRoutes();
+  const { toggleRouteCompletion, deleteRoute } = useRoutes();
 
   const displayMuseums =
     museums.length > 2
@@ -29,39 +29,83 @@ export default function RouteCard(props: RouteCardProps) {
       bg="brand.surface"
       p="5"
       shadow="sm"
-      borderColor={isSelected ? "gray.800" : "brand.border"}
+      borderColor={isSelected ? "brand.primary" : "brand.border"}
       w="full"
-      _hover={{ shadow: "md", borderColor: isSelected ? "gray.800" : "gray.400" }}
+      _hover={{ shadow: "md", borderColor: isSelected ? "brand.primaryHover" : "brand.primary" }}
       transition="all 0.2s"
       cursor="pointer"
+      role="button"
+      tabIndex={0}
+      aria-label={`Select route ${name}`}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
     >
-      <Flex justify="space-between" align="flex-start" mb="3">
-        <Text fontSize="xl" fontWeight="bold">{name}</Text>
-        <Flex
-          align="center"
-          gap="2"
+      <Text fontSize="xl" fontWeight="bold" mb="3" title={name}>{name}</Text>
+      <Flex justify="space-between" align="flex-end">
+        <Flex direction="column" gap="2" color="gray.600" fontSize="sm">
+          <Flex align="flex-start" gap="2">
+            <Icon as={MdOutlineMuseum} boxSize="4" mt={0.5} color="brand.primaryText" />
+            <Text color="brand.primaryText">{displayMuseums}</Text>
+          </Flex>
+          <Flex align="center" gap="1">
+            <Icon as={LuCalendar} boxSize="4" />
+            <Text mr="13px" color="brand.primaryText">{date}</Text>
+           
+            <Text color="brand.primaryText">  •  {stopsCount} stop{stopsCount !== 1 ? "s" : ""}</Text>
+          </Flex>
+        </Flex>
+        <Flex align="center" gap="4">
+          <Flex
+            role="button"
+            tabIndex={0}
+            aria-label={isCompleted ? "Mark route as incomplete" : "Mark route as complete"}
+            align="center"
+            gap="2"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleRouteCompletion(id);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleRouteCompletion(id);
+              }
+            }}
+            transition="all 0.2s ease"
+            
+            _hover={{ color: "#806b50", transform: "translateY(-2px)",
+                       }}
+            color={"#b5956a"}
+          >
+            <Text fontSize="sm" display={{ base: "none", md: "block" }}>{isCompleted ? "Completed" : "Mark as complete"}</Text>
+            <Icon as={isCompleted ? IoCheckmarkCircle : IoEllipseOutline} boxSize="5" />
+          </Flex>
+        <Icon
+          role="button"
+          tabIndex={0}
+          aria-label={`Delete route ${name}`}
+          as={IoTrashOutline}
+          boxSize="5"
+          color="red.400"
+          _hover={{ color: "red.600" }}
           onClick={(e) => {
             e.stopPropagation();
-            toggleRouteCompletion(id);
+            deleteRoute(id);
           }}
-          _hover={{ color: "brand.primary" }}
-          color={isCompleted ? "green.500" : "brand.muted"}
-        >
-          <Text fontSize="sm">{isCompleted ? "Completed" : "Mark as complete"}</Text>
-          <Icon as={isCompleted ? IoCheckmarkCircle : IoEllipseOutline} boxSize="5" />
-        </Flex>
-      </Flex>
-      <Flex direction="column" gap="2" color="gray.600" fontSize="sm">
-        <Flex align="flex-start" gap="2">
-          <Icon as={MdOutlineMuseum} boxSize="4" mt={0.5} />
-          <Text>{displayMuseums}</Text>
-        </Flex>
-        <Flex align="center" gap="2">
-          <Icon as={LuCalendar} boxSize="4" />
-          <Text>{date}</Text>
-          <Text mx="1">•</Text>
-          <Text>{stopsCount} stop{stopsCount !== 1 ? "s" : ""}</Text>
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              deleteRoute(id);
+            }
+          }}
+        />
         </Flex>
       </Flex>
     </Box>

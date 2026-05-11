@@ -40,7 +40,7 @@ export default function SelectArtworkCard(props: ArtworkCardProps) {
           {tags?.slice(0, 3).map((tag) => (
             <Text
               key={tag}
-              fontSize="xs"
+              fontSize="sm"
               color="brand.muted"
             >
               #{tag}
@@ -49,17 +49,18 @@ export default function SelectArtworkCard(props: ArtworkCardProps) {
         </Flex>
       </Flex>
       <Button
-        bg={isSelected ? "gray.800" : "transparent"}
+        aria-label={isSelected ? `Remove ${title} from route` : `Add ${title} to route`}
+        bg={isSelected ? "brand.primary" : "transparent"}
         borderWidth="1px"
-        borderColor={isSelected ? "gray.800" : "brand.border"}
+        borderColor={isSelected ? "brand.primary" : "brand.border"}
         borderRadius="full"
         w="8"
         h="8"
         minW="0"
         p="0"
         onClick={() => toggleSelectedForNewRoute(props)}
-        _hover={{ bg: isSelected ? "gray.700" : "gray.50" }}>
-        <Icon as={isSelected ? HiOutlineMinus : HiOutlinePlus} boxSize="5" color={isSelected ? "white" : "gray.600"} />
+        _hover={{ bg: isSelected ? "brand.primaryHover" : "brand.tertiary" }}>
+        <Icon as={isSelected ? HiOutlineMinus : HiOutlinePlus} boxSize="5" color={isSelected ? "brand.primaryText" : "brand.text"} />
       </Button>
     </Flex>
   );

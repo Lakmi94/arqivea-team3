@@ -19,15 +19,19 @@ export interface ArtworkCardProps {
   year: string;
   dimensions: string;
   tags: string[];
+  imagePosition?: string;
 }
 
 export default function ArtworkCard(props: ArtworkCardProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { title, artist, imageUrl, recommendationTag, museum, city, room, medium, displayStatus } = props;
+  const { title, artist, imageUrl, recommendationTag, museum, city, room, medium, displayStatus, imagePosition } = props;
 
   return (
     <>
     <Box
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${title}`}
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -35,6 +39,12 @@ export default function ArtworkCard(props: ArtworkCardProps) {
       shadow="sm"
       cursor="pointer"
       onClick={() => setIsDialogOpen(true)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setIsDialogOpen(true);
+        }
+      }}
       _hover={{ shadow: "md" }}
       transition="shadow 0.2s">
       <Box position="relative">
@@ -42,12 +52,13 @@ export default function ArtworkCard(props: ArtworkCardProps) {
           <Image
             src={`./images/${imageUrl}`}
             alt={title}
-            h={80}
+            h={64}
             w="full"
             objectFit="cover"
+            objectPosition={imagePosition || "top"}
           />
         ) : (
-          <Box h="48" bg="brand.placeholder" />
+          <Box h={56} bg="brand.placeholder" />
         )}
         {displayStatus && (
           <Box
@@ -59,7 +70,7 @@ export default function ArtworkCard(props: ArtworkCardProps) {
             px="2"
             py="1"
             borderRadius="md"
-            fontSize="xs"
+            fontSize="sm"
             fontWeight="bold"
             color="gray.800"
             shadow="sm"
@@ -85,10 +96,12 @@ export default function ArtworkCard(props: ArtworkCardProps) {
         </Box>
         {recommendationTag && (
           <Box
-            borderWidth="1px"
-            borderBlockColor="brand.border"
+            // borderWidth="1px"
+            // borderBlockColor="brand.text.primary"
             borderRadius="md"
-            p="2">
+            bg="brand.tertiary"
+            px="2"
+            py="1">
             <Text>{recommendationTag}</Text>
           </Box>
         )}
@@ -96,15 +109,15 @@ export default function ArtworkCard(props: ArtworkCardProps) {
       </Flex>
       <Flex direction="column" p="2">
         <Flex p="2" justifyContent="space-between" alignItems="center">
-          <Text fontSize="sm" color="brand.lightMuted">
+          <Text fontSize="sm" color="brand.text.primary" fontWeight="bold">
             Museum
           </Text>
           <Text fontSize="sm" color="brand.lightMuted">
-            {museum}, {city}
+            {museum}
           </Text>
         </Flex>
         <Flex p="2" justifyContent="space-between" alignItems="center">
-          <Text fontSize="sm" color="brand.lightMuted">
+          <Text fontSize="sm" color="brand.text.primary" fontWeight="bold">
             Room
           </Text>
           <Text fontSize="sm" color="brand.lightMuted">
@@ -112,7 +125,7 @@ export default function ArtworkCard(props: ArtworkCardProps) {
           </Text>
         </Flex>
         <Flex p="2" justifyContent="space-between" alignItems="center">
-          <Text fontSize="sm" color="brand.lightMuted">
+          <Text fontSize="sm" color="brand.text.primary" fontWeight="bold">
           Medium
           </Text>
           <Text fontSize="sm" color="brand.lightMuted">

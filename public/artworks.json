@@ -23,7 +23,8 @@
       "accessionNumber": "CTB.1998.16",
       "year": "1598",
       "dimensions": "161 x 128 cm",
-      "academicNotes": "Caravaggio’s Saint Catherine of Alexandria (circa 1598) is a masterwork by Caravaggio, depicting the martyred saint with dramatic chiaroscuro."
+      "academicNotes": "Caravaggio’s Saint Catherine of Alexandria (circa 1598) is a masterwork by Caravaggio, depicting the martyred saint with dramatic chiaroscuro.",
+      "imagePosition": "top"
     },
     {
       "id": "art_003",
@@ -48,7 +49,8 @@
       "accessionNumber": "AS00001",
       "year": "1906",
       "dimensions": "55 x 46 cm",
-      "academicNotes": "Picasso’s Bust of a Young Woman (1906) is a seminal work from his Rose Period, showcasing his evolving style and emotional depth in portraiture."
+      "academicNotes": "Picasso’s Bust of a Young Woman (1906) is a seminal work from his Rose Period, showcasing his evolving style and emotional depth in portraiture.",
+      "imagePosition": "middle"
     },
     {
       "id": "art_002",
@@ -74,7 +76,8 @@
       "accessionNumber": "P00001",
       "year": "1656",
       "dimensions": "318 x 276 cm",
-      "academicNotes": "Velázquez’s Las Meninas (1656) is a complex"
+      "academicNotes": "Velázquez’s Las Meninas (1656) is a complex",
+      "imagePosition": "bottom"
     },
 
     {
@@ -100,7 +103,8 @@
       "accessionNumber": "CTB.1998.15",
       "year": "1636",
       "dimensions": "114 x 86 cm",
-      "academicNotes": "A detailed study of the western façade of the Church of Saint Mary in Utrecht."
+      "academicNotes": "A detailed study of the western façade of the Church of Saint Mary in Utrecht.",
+      "imagePosition": "middle"
     },
     {
       "id": "art_005",
@@ -126,6 +130,7 @@
       "accessionNumber": "AS00002",
       "year": "2019",
       "dimensions": "70 x 50 cm",
+      "imagePosition": "middle",
       "academicNotes": "Patricia Gadea’s S/T (Apocalypse) (2019) is a powerful contemporary work that explores themes of chaos and transformation through abstract forms and mixed media."
     },
     {
@@ -152,6 +157,7 @@
       "accessionNumber": "CTB.1998.16",
       "year": "1963",
       "dimensions": "122 x 122 cm",
+      "imagePosition": "bottom",
       "academicNotes": "Roy Lichten steins Woman in Bath (1963) is an iconic example of Pop Art, featuring bold colors and Ben-Day dots to depict a comic book style image of a woman in a bath."
     },
     {
@@ -285,7 +291,7 @@
       "academicNotes": "The early artistic output of Henri de Toulouse-Lautrec—created before his legendary immersion into the bohemian nightlife of Montmartre—is brilliantly encapsulated in The Jockeys (circa 1882). This dynamic oil-on-canvas work, housed in the Museo Nacional Thyssen-Bornemisza, represents a crucial foundational era for the artist. Born into an aristocratic French family where horsemanship was a deeply ingrained tradition, the young Lautrec was expected to become an avid rider. However, after tragically breaking both of his femurs in his early teens—a condition that stunted his leg growth and permanently prevented him from riding—he was forced to channel his intense equestrian obsession entirely into his art. Studying under the renowned sporting painter René Princeteau, a close friend of his father, Lautrec’s precocious teenage years were completely dominated by the motif of the horse.\n\nThis specific painting stands as a culminating masterpiece of that formative period, capturing a breathtaking sense of kinetic energy and immediacy. Unlike the heavily structured, stiff academic racing scenes of his predecessors, Lautrec approaches the subject with raw, chaotic momentum. The composition centers on a group of \"gentleman-jockeys\" mounted on curiously elongated, muscular steeds, caught in the tense, frantic moments of a race. The presence of a brown dog running freely alongside the horses' hooves suggests that this is an informal, gentlemanly country race-meeting rather than a highly regulated, elite event at a famous metropolitan track like Longchamp. Lautrec masterfully draws the viewer's eye directly to the center of the action by using sudden, highly saturated splashes of color—specifically the vivid red and blue of the central jockeys' racing silks. These bright tones act as visual anchors, contrasting sharply against the dark, powerful bodies of the animals and the muted, earthy tones of the dirt track. What truly elevates this composition is Lautrec’s highly advanced handling of light, atmosphere, and brushwork. The scene is set beneath a highly charged, dramatic sky heavy with threatening rain clouds, which produces a striking contre-jour (back-lit) effect. This dramatic lighting throws the long, dark shadows of the horses forward, pulling them directly out toward the spectator's physical space and firmly grounding the action of the scene. Furthermore, Lautrec completely abandons the smooth, blended realism of traditional 19th-century sporting art. Instead, he utilizes a skein of short, rapid, and staccato brushstrokes. This freely applied technique not only perfectly captures the raw physical power, sweat, and movement of the animals but also hints at the energetic, post-impressionistic style he was rapidly developing.\n\nUltimately, The Jockeys is a poignant turning point in Lautrec’s career. Shortly after this period, his equestrian paintings dramatically decreased as he moved to Paris, discovered the vibrant world of Montmartre, and shifted his artistic lens completely toward the indoor, artificial glow of cabarets, singers, and marginalized figures. In the bottom right corner of the canvas, viewers can spot Lautrec's early, stylized signature, painted long before he adopted his famous, minimalist circular monogram. Because this piece completely predates his iconic poster style, it serves as a brilliant bridge within Madrid's museum circuit, allowing explorers to see exactly how a young artist evolved from painting traditional aristocratic subjects into becoming one of the most radical and observant figures of modern art.",
       "imageUrl": "TheJockeys.jpg",
       "homePage": false,
-      "description": ""
+      "imagePosition": "middle"
     },
     {
       "id": "art_013",
@@ -369,6 +375,7 @@
       "medium": "Oil on poplar panel",
       "displayStatus": "On display",
       "recommendationTag": "Must see!",
+      "imagePosition": "middle",
       "tags": [
         "16th Century",
         "France",

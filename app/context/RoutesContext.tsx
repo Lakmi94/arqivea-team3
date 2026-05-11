@@ -17,6 +17,7 @@ interface RoutesContextType {
   routes: Route[];
   addRoute: (route: Route) => void;
   toggleRouteCompletion: (id: string) => void;
+  deleteRoute: (id: string) => void;
 }
 
 const RoutesContext = createContext<RoutesContextType | undefined>(undefined);
@@ -97,8 +98,12 @@ export function RoutesProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const deleteRoute = (id: string) => {
+    setRoutes((prev) => prev.filter((route) => route.id !== id));
+  };
+
   return (
-    <RoutesContext.Provider value={{ routes, addRoute, toggleRouteCompletion }}>
+    <RoutesContext.Provider value={{ routes, addRoute, toggleRouteCompletion, deleteRoute }}>
       {children}
     </RoutesContext.Provider>
   );

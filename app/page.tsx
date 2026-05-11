@@ -35,6 +35,7 @@ interface Artwork {
   year: string;
   dimensions: string;
   tags: string[];
+  imagePosition?: string;
 }
 
 export default function Home() {
@@ -63,13 +64,23 @@ export default function Home() {
     appliedFilters.includes("Spain") &&
     appliedFilters.includes("Modern");
 
+    const isSpainModernAndDisplay = appliedFilters.length === 3 &&
+    appliedFilters.includes("Spain") &&
+    appliedFilters.includes("Modern") &&
+    appliedFilters.includes("On Display");
+
   const isSpanishModernSearch =
     appliedSearchQuery.toLowerCase().trim() === "spanish modernism";
 
   const spainAndModernArtworks = artworksData.artworks
     .filter((artwork) => {
       const artworkText = JSON.stringify(artwork).toLowerCase();
-      return artworkText.includes("spain") && artworkText.includes("modern");
+      const hasSpainAndModern = artworkText.includes("spain") && artworkText.includes("modern");
+
+      if (isSpainModernAndDisplay) {
+        return hasSpainAndModern && artwork.displayStatus === "On display";
+      }
+      return hasSpainAndModern;
     })
     .slice(0, 6);
 
@@ -108,37 +119,34 @@ export default function Home() {
       flex="1"
       align="center"
       bg="brand.bg"
-      fontFamily="sans"
       color="brand.text">
-        <Flex  direction="column"
-     >
-            <Heading as="h1" fontSize="3xl" fontWeight="bold" mt="4">
-        Discovery
-      </Heading>
-      <Text mt="4" fontSize="lg" color="brand.muted">
-        Hyper-search & Academic Gallery
-      </Text>
-        </Flex>
-    
+      <Flex direction="column" w="full" maxW="1200px" px="6" align="flex-start">
+        <Heading as="h1" fontSize="3xl" fontWeight="bold" mt="4">
+          Discovery
+        </Heading>
+        <Text mt="4" fontSize="lg" color="brand.text.primary">
+          Hyper-search & Academic Gallery
+        </Text>
 
-      <Flex
-        mt="8"
-        p="3"
-        px="4"
-        gap="2"
-        borderWidth="1px"
-        borderColor="brand.border"
-        borderRadius="lg"
-        bg="brand.surface"
-        align="center"
-        w="full"
-        maxW="4xl">
+        <Flex
+          mt="8"
+          p="3"
+          px="4"
+          gap="2"
+          borderWidth="1px"
+          borderColor="brand.border"
+          borderRadius="lg"
+          bg="brand.surface"
+          align="center"
+          w="full">
         <Icon size="lg" color="">
           <CiSearch />
         </Icon>{" "}
         <Input
           ml="-13px"
           id="search"
+          color="brand.primaryText"
+          _placeholder={{ color: "brand.muted" }}
           type="text"
           placeholder="Search for artworks, artists, museums, or vibes..."
           flex="1"
@@ -164,9 +172,13 @@ export default function Home() {
             py="2"
             mr="2"
             variant="outline"
-            borderColor="brand.border"
+              bg="brand.placeholder"
+           borderWidth="1px"
+               borderColor="brand.border"
+          color="brand.primaryText"
+         _hover={{ bg: "brand.primary" }}
             onClick={handleSearch}>
-            <Icon size="lg" color="">
+            <Icon size="lg" color="brand.text.primary">
               <CiSearch />
             </Icon>
             Search
@@ -175,19 +187,21 @@ export default function Home() {
         <Button
           px="6"
           py="2"
-          bg="brand.primary"
-          color="white"
-          _hover={{ bg: "brand.primaryHover" }}
+          bg="brand.placeholder"
+           borderWidth="1px"
+               borderColor="brand.border"
+          color="brand.primaryText"
+         _hover={{ bg: "brand.primary" }}
           transition="colors 0.2s"
           onClick={() => setShowFilters(!showFilters)}>
-          <Icon size="lg" color="">
+          <Icon size="lg" color="brand.text.primary">
             <IoFilterOutline />
           </Icon>
           Filters
         </Button>
       </Flex>
       {showFilters && (
-        <Box w="full" maxW="4xl" mt="4">
+        <Box w="full" maxW="1200px" mt="4">
           <Filters
             onApply={() => {
               setSearchQuery(""); // Clears search bar text
@@ -207,14 +221,16 @@ export default function Home() {
       )}
       {!showResults ||
       (appliedFilters.length === 0 && appliedSearchQuery.trim() === "") ? (
-        <Flex direction={"column"}>
-          <Text>Recommended artwork</Text>
+        <Flex direction={"column"} w="full" maxW="1200px" align="flex-start" mt="3">
+          <Text fontSize="lg" color="brand.muted" mb="3">
+            Recommended artwork
+          </Text>
           <SimpleGrid
             columns={{ base: 1, md: 2, lg: 3 }}
             gap={6}
-            mt="12"
+            mt="0"
             w="full"
-            maxW="6xl"
+            maxW="1200px"
             position={"relative"}>
             {artworksData.artworks.map(
               (artwork) =>
@@ -235,20 +251,27 @@ export default function Home() {
                     year={artwork.year}
                     dimensions={artwork.dimensions}
                     tags={artwork.tags}
+                    imagePosition={artwork.imagePosition}
                   />
                 ),
             )}
           </SimpleGrid>
         </Flex>
-      ) : isSpainAndModern || isSpanishModernSearch ? (
-        <Flex direction="column" w="full" align="center">
-          <Text>{`${spainAndModernArtworks.length} results found for "Spain" + "Modernism"`}</Text>
+      ) : isSpainAndModern || isSpanishModernSearch || isSpainModernAndDisplay ? (
+        <Flex direction="column" w="full" maxW="1200px" align="flex-start">
+          <Text>{`${spainAndModernArtworks.length} results found for ${
+            isSpanishModernSearch
+              ? '"Spanish Modernism"'
+              : isSpainModernAndDisplay
+              ? '"Spain" + "Modern" + "On Display"'
+              : '"Spain" + "Modern"'
+          }`}</Text>
           <SimpleGrid
             columns={{ base: 1, md: 2, lg: 3 }}
             gap={6}
-            mt="12"
+            mt="3"
             w="full"
-            maxW="6xl"
+            maxW="1200px"
             position={"relative"}>
             {spainAndModernArtworks.map((artwork) => (
               <ArtworkCard
@@ -267,12 +290,13 @@ export default function Home() {
                 year={artwork.year}
                 dimensions={artwork.dimensions}
                 tags={artwork.tags}
+                imagePosition={artwork.imagePosition}
               />
             ))}
           </SimpleGrid>
         </Flex>
       ) : (
-        <Flex mt="8">
+        <Flex mt="8" w="full" maxW="1200px" align="flex-start">
           <Text fontSize="md" color="brand.muted">
             {appliedSearchQuery.trim().length > 0
               ? `No results found for "${appliedSearchQuery}"`
@@ -281,5 +305,6 @@ export default function Home() {
         </Flex>
       )}
     </Flex>
+  </Flex>
   );
 }

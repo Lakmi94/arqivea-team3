@@ -1,6 +1,4 @@
 "use client";
-
-import { useState, useEffect } from "react";
 import { Flex, Text } from "@chakra-ui/react";
 
 // Retrieve the globally applied filters here

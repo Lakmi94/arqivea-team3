@@ -15,8 +15,9 @@ export default function Filters({ onApply }: FiltersProps) {
 
   return (
     <Flex
+      w="full"
+      maxW="1200px"
       p="4"
-      maxW="4xl"
       bg="brand.surface"
       borderWidth="1px"
       borderColor="brand.border"
@@ -36,14 +37,18 @@ export default function Filters({ onApply }: FiltersProps) {
                     key={option}
                     size="sm"
                     bg={isSelected ? "brand.primary" : "brand.surface"}
-                    color={isSelected ? "white" : "brand.text"}
+                    color={isSelected ? "brand.primaryText" : "brand.text"}
                     borderWidth="1px"
                     h={"25px"}
                     borderColor={isSelected ? "brand.primary" : "brand.border"}
+                    transition="all 0.2s ease"
                     _hover={{
                       bg: isSelected
                         ? "brand.primaryHover"
-                        : "brand.placeholder",
+                        : "brand.tertiary",
+                      borderColor: isSelected ? "brand.primaryHover" : "brand.primary",
+                      transform: "translateY(-2px)",
+                      shadow: "md",
                     }}
                     onClick={() => toggleFilter(filter.id, option)}>
                     {option}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Box, Flex, Text, Button, Icon, Dialog, Image, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Text, Icon, Dialog, Image, Spinner } from "@chakra-ui/react";
 import { IoClose, IoCheckmark } from "react-icons/io5";
 
 interface ShareDialogProps {
@@ -48,21 +48,30 @@ export default function ShareDialog({ isOpen, onClose }: ShareDialogProps) {
       <Dialog.Backdrop bg="blackAlpha.600" />
       <Dialog.Positioner display="flex" alignItems="center" justifyContent="center" p="6">
         <Dialog.Content
-          bg="brand.surface"
-          borderRadius="lg"
-          w="620px"
-          maxW="90vw"
-          p="6"
+         bg="brand.surface"
+          color="brand.text"
+          borderRadius="xl"
+         
+          display="flex"
+          flexDir="column"
+          shadow="2xl"
           position="relative"
-          shadow="xl"
+          overflow="hidden"
+          
+          w="550px"
+          h="600px"
+          maxW="90vw"
+          
+         
+       
         >
           {/* Close button */}
           <Dialog.CloseTrigger position="absolute" top="4" right="4" cursor="pointer">
             <Icon as={IoClose} boxSize="6" color="brand.muted" _hover={{ color: "brand.text" }} />
           </Dialog.CloseTrigger>
 
-          <Dialog.Header p={0} borderBottomWidth={'1px'}>
-            <Dialog.Title fontSize="2xl" fontWeight="bold" mb="5">
+          <Dialog.Header borderBottomWidth="1px" borderColor="brand.border" px={8} py={5} bg="white">
+            <Dialog.Title fontSize="3xl" fontWeight="bold">
               Share your visit!
             </Dialog.Title>
           </Dialog.Header>
