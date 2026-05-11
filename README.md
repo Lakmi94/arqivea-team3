@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+The web app is live at https://arqivea-team3.vercel.app/ and the source code can be found at the following GitHub repository:
+https://github.com/Lakmi94/arqivea-team3
 
 ## Getting Started
 
