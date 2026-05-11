@@ -1,5 +1,9 @@
-The web app is live at https://arqivea-team3.vercel.app/ and the source code can be found at the following GitHub repository:
-https://github.com/Lakmi94/arqivea-team3
+The web app is live at [https://arqivea-team3.vercel.app/] (https://arqivea-team3.vercel.app/) and the source code can be found at the following GitHub repository: [https://github.com/Lakmi94/arqivea-team3]
+(https://github.com/Lakmi94/arqivea-team3). 
+
+
+**⚠️ IMPORTANT:** 
+The folder is uploaded without the node modules folder and it is crucial to run 'npm install' to install all the dependencies. 
 
 ## Getting Started
 
