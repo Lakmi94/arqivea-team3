@@ -67,7 +67,7 @@ export default function Home() {
     const isSpainModernAndDisplay = appliedFilters.length === 3 &&
     appliedFilters.includes("Spain") &&
     appliedFilters.includes("Modern") &&
-    appliedFilters.includes("On Display");
+    (appliedFilters.includes("On Display") || appliedFilters.includes("On display"));
 
   const isSpanishModernSearch =
     appliedSearchQuery.toLowerCase().trim() === "spanish modernism";
@@ -78,7 +78,7 @@ export default function Home() {
       const hasSpainAndModern = artworkText.includes("spain") && artworkText.includes("modern");
 
       if (isSpainModernAndDisplay) {
-        return hasSpainAndModern && artwork.displayStatus === "On display";
+        return hasSpainAndModern && artwork.displayStatus?.toLowerCase() === "on display";
       }
       return hasSpainAndModern;
     })
@@ -105,6 +105,14 @@ export default function Home() {
     setAppliedFilters,
     setShowResults,
   ]);
+
+  useEffect(() => {
+    const closeFilters = () => setShowFilters(false);
+    window.addEventListener("close-discovery-filters", closeFilters);
+    return () => {
+      window.removeEventListener("close-discovery-filters", closeFilters);
+    };
+  }, []);
 
   const handleSearch = () => {
     setAppliedSearchQuery(searchQuery);
@@ -258,12 +266,12 @@ export default function Home() {
           </SimpleGrid>
         </Flex>
       ) : isSpainAndModern || isSpanishModernSearch || isSpainModernAndDisplay ? (
-        <Flex direction="column" w="full" maxW="1200px" align="flex-start">
-          <Text>{`${spainAndModernArtworks.length} results found for ${
+        <Flex direction="column" w="full" maxW="1200px" mt="3" align="flex-start">
+          <Text fontSize="lg" color="brand.muted">{`${spainAndModernArtworks.length} results found for ${
             isSpanishModernSearch
               ? '"Spanish Modernism"'
               : isSpainModernAndDisplay
-              ? '"Spain" + "Modern" + "On Display"'
+              ? '"Spain" + "Modern" + "On display"'
               : '"Spain" + "Modern"'
           }`}</Text>
           <SimpleGrid

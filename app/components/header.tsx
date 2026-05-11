@@ -20,6 +20,11 @@ export default function Header() {
   const { resetAll } = useFilters();
   const pathname = usePathname();
 
+  const handleResetAndClose = () => {
+    resetAll();
+    window.dispatchEvent(new Event("close-discovery-filters"));
+  };
+
   return (
     <Box
       as="header"
@@ -37,7 +42,7 @@ export default function Header() {
               asChild
               _hover={{ textDecoration: "none" }}
               _focus={{ outline: "none" }}>
-              <NextLink href="/" onClick={resetAll}>
+            <NextLink href="/" onClick={handleResetAndClose}>
                 <Image
                   src="/images/arqivea.png"
                   alt="Arqivea Logo"
@@ -65,7 +70,7 @@ export default function Header() {
               transition="all 0.2s"
               _hover={{ color: pathname === "/" ? "#3d3326" : "brand.text", textDecoration: "none", bg: "#EBDDCC" }}
               _focus={{outline:'none'}}>
-              <NextLink href="/" onClick={resetAll}>
+            <NextLink href="/" onClick={handleResetAndClose}>
                 <Icon as={MdSearch} boxSize="5" mr="2" />
                 Discovery
               </NextLink>
