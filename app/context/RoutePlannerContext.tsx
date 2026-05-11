@@ -59,7 +59,7 @@ const defaultSavedArtworks: ArtworkCardProps[] = [
     displayStatus: "On display",
     recommendationTag: "Recommended",
     tags: ["19th Century", "UK", "Still Life", "Post-Impressionism", "Oil", "Canvas", "Painting"],
-    imageUrl: "Sunflowers.jpg",
+    imageUrl: "SunFlowers.jpg",
     accessionNumber: "NG3863",
     year: "1888",
     dimensions: "92.1 x 73 cm",
