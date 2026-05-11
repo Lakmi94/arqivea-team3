@@ -11,6 +11,7 @@ interface ShareDialogProps {
 
 export default function ShareDialog({ isOpen, onClose }: ShareDialogProps) {
   const [showToast, setShowToast] = useState(false);
+  const [sharedPlatform, setSharedPlatform] = useState("");
   const [isGenerating, setIsGenerating] = useState(true);
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
@@ -22,8 +23,8 @@ export default function ShareDialog({ isOpen, onClose }: ShareDialogProps) {
     }
   }
 
-  const handleFacebookShare = () => {
-    console.log("Share to Facebook");
+  const handleShare = (platform: string) => {
+    setSharedPlatform(platform);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
@@ -32,7 +33,7 @@ export default function ShareDialog({ isOpen, onClose }: ShareDialogProps) {
     if (isOpen) {
       const timer = setTimeout(() => {
         setIsGenerating(false);
-      }, 4000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
@@ -132,7 +133,7 @@ export default function ShareDialog({ isOpen, onClose }: ShareDialogProps) {
                     h="52px"
                     cursor="pointer"
                     _hover={{ opacity: 0.85 }}
-                    onClick={handleFacebookShare}
+                    onClick={() => handleShare("Facebook")}
                   />
                   <Image
                     src="/images/Instagram_icon.png"
@@ -142,42 +143,55 @@ export default function ShareDialog({ isOpen, onClose }: ShareDialogProps) {
                     h="52px"
                     cursor="pointer"
                     _hover={{ opacity: 0.85 }}
-                    onClick={() => console.log("Share to Instagram")}
+                    onClick={() => handleShare("Instagram")}
                   />
                 </Flex>
               </Flex>
             )}
           </Dialog.Body>
+
+          {showToast && (
+            <Flex
+              position="absolute"
+              inset="0"
+              bg="blackAlpha.600"
+              backdropFilter="blur(2px)"
+              alignItems="center"
+              justifyContent="center"
+              zIndex="9999"
+            >
+              <Flex
+                bg="brand.surface"
+                color="brand.text"
+                borderWidth="1px"
+                borderColor="brand.border"
+                px="10"
+                py="8"
+                borderRadius="xl"
+                shadow="dark-lg"
+                alignItems="center"
+                gap="4"
+                position="relative"
+              >
+                <Icon
+                  as={IoClose}
+                  position="absolute"
+                  top="4"
+                  right="4"
+                  cursor="pointer"
+                  boxSize="6"
+                  color="brand.muted"
+                  _hover={{ color: "brand.text" }}
+                  onClick={() => setShowToast(false)}
+                />
+                <Icon as={IoCheckmark} color="green.500" boxSize="10" />
+                <Text fontWeight="bold" fontSize="2xl">Shared to {sharedPlatform}</Text>
+              </Flex>
+            </Flex>
+          )}
         </Dialog.Content>
       </Dialog.Positioner>
     </Dialog.Root>
-
-    {showToast && (
-      <Flex
-        position="fixed"
-        inset="0"
-        bg="blackAlpha.800"
-        alignItems="center"
-        justifyContent="center"
-        zIndex="9999"
-      >
-        <Flex
-          bg="brand.surface"
-          color="brand.text"
-          borderWidth="1px"
-          borderColor="brand.border"
-          px="10"
-          py="8"
-          borderRadius="xl"
-          shadow="dark-lg"
-          alignItems="center"
-          gap="4"
-        >
-          <Icon as={IoCheckmark} color="green.500" boxSize="10" />
-          <Text fontWeight="bold" fontSize="2xl">Shared to Facebook</Text>
-        </Flex>
-      </Flex>
-    )}
     </>
   );
 }
