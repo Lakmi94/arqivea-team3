@@ -420,7 +420,7 @@
     },
     {
       "id": "art_018",
-      "title": "Sun Flowers",
+      "title": "Sunflowers",
       "artist": "Vincent van Gogh",
       "museum": "National Gallery",
       "city": "London",
@@ -437,7 +437,7 @@
         "Canvas",
         "Painting"
       ],
-      "imageUrl": "SunFlowers.jpg",
+      "imageUrl": "Sunflowers.jpg",
       "homePage": false,
       "accessionNumber": "NG3863",
       "year": "1888",
