@@ -340,7 +340,7 @@
         "Canvas",
         "Painting"
       ],
-      "imageUrl": "Manwithaclarinet.jpg",
+      "imageUrl": "ManwithaClarinet.jpg",
       "homePage": false,
       "accessionNumber": "CTB.1998.18",
       "year": "1911",
@@ -420,7 +420,7 @@
     },
     {
       "id": "art_018",
-      "title": "Sunflowers",
+      "title": "Sun Flowers",
       "artist": "Vincent van Gogh",
       "museum": "National Gallery",
       "city": "London",
@@ -437,7 +437,7 @@
         "Canvas",
         "Painting"
       ],
-      "imageUrl": "Sunflowers.jpg",
+      "imageUrl": "SunFlowers.jpg",
       "homePage": false,
       "accessionNumber": "NG3863",
       "year": "1888",

@@ -74,6 +74,13 @@ export default function Home() {
 
   const spainAndModernArtworks = artworksData.artworks
     .filter((artwork) => {
+      const excludedTitles = [
+        "Young Woman at a Window",
+        "Man with a Clarinet",
+        "The Communicant",
+      ];
+      if (excludedTitles.includes(artwork.title)) return false;
+
       const artworkText = JSON.stringify(artwork).toLowerCase();
       const hasSpainAndModern = artworkText.includes("spain") && artworkText.includes("modern");
 
